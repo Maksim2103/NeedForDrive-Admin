@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/NeedForDrive-Admin/static/css/main.bbfb775f.chunk.css",
+    "main.js": "/NeedForDrive-Admin/static/js/main.0fed459f.chunk.js",
+    "main.js.map": "/NeedForDrive-Admin/static/js/main.0fed459f.chunk.js.map",
+    "runtime-main.js": "/NeedForDrive-Admin/static/js/runtime-main.c1cb7ebb.js",
+    "runtime-main.js.map": "/NeedForDrive-Admin/static/js/runtime-main.c1cb7ebb.js.map",
+    "static/js/2.3df90a42.chunk.js": "/NeedForDrive-Admin/static/js/2.3df90a42.chunk.js",
+    "static/js/2.3df90a42.chunk.js.map": "/NeedForDrive-Admin/static/js/2.3df90a42.chunk.js.map",
+    "index.html": "/NeedForDrive-Admin/index.html",
+    "static/css/main.bbfb775f.chunk.css.map": "/NeedForDrive-Admin/static/css/main.bbfb775f.chunk.css.map",
+    "static/js/2.3df90a42.chunk.js.LICENSE.txt": "/NeedForDrive-Admin/static/js/2.3df90a42.chunk.js.LICENSE.txt",
+    "static/media/Logo.bc4f3ee8.svg": "/NeedForDrive-Admin/static/media/Logo.bc4f3ee8.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c1cb7ebb.js",
+    "static/js/2.3df90a42.chunk.js",
+    "static/css/main.bbfb775f.chunk.css",
+    "static/js/main.0fed459f.chunk.js"
+  ]
+}
