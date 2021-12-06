@@ -1,0 +1,102 @@
+.logoWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+
+  .logoTitle {
+    font-family: Helvetica;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+    color: #3d5170;
+    margin-left: 10px;
+  }
+}
+
+.formWrapper {
+  width: 360px;
+  height: 235px;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+
+  .mainTitle {
+    margin: 5px 0 20px;
+    font-family: Helvetica;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17.5px;
+    line-height: 20px;
+    text-align: center;
+    letter-spacing: -0.4375px;
+    color: #3d5170;
+  }
+
+  .inputTitle {
+    font-family: Helvetica;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10.5px;
+    line-height: 12px;
+    letter-spacing: -0.18421px;
+    color: #495057;
+  }
+
+  .inputInput {
+    margin: 15px 0;
+  }
+
+  .buttonsWrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .buttonAuth {
+    font-family: Helvetica;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10.5px;
+    line-height: 12px;
+    letter-spacing: -0.18421px;
+    color: #007bff;
+  }
+
+  .buttonLogin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 110px;
+    height: 29px;
+    background: #007bff;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-family: Helvetica;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 11.5px;
+    line-height: 13px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: -0.0821429px;
+    color: #ffffff;
+  }
+
+  .disabledLink {
+    pointer-events: none;
+    color: lightgray;
+    background: transparent;
+  }
+}
+
+@media (max-width: 425px) {
+  .formWrapper {
+    width: 270px;
+    height: 235px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+  }
+}
