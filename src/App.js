@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router';
+import { HashRouter } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 
