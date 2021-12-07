@@ -17,7 +17,7 @@
 
 .formWrapper {
   width: 360px;
-  height: 235px;
+  height: 255px;
   display: flex;
   flex-direction: column;
   padding: 15px;
@@ -45,7 +45,8 @@
   }
 
   .inputInput {
-    margin: 15px 0;
+    margin: 10px 0 0 0;
+    height: 65px;
   }
 
   .buttonsWrapper {

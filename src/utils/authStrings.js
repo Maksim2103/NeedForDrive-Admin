@@ -13,7 +13,4 @@ export const randomHash = (length) => {
 
 const hash = window.btoa(`${randomHash(10)}:${clientSecret}`);
 
-const token = window.sessionStorage.access_token;
-
 export const basicString = `Basic ${hash}`;
-export const bearerString = `Bearer ${token}`;

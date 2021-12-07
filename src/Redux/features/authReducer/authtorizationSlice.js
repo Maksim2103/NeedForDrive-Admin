@@ -1,14 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  fetchAsyncRegister,
   fetchAsyncLogin,
   fetchAsyncLogout,
   fetchAsyncRefreshToken,
 } from '../thunks';
 
 const initialState = {
-  dataResponseRegister: null,
   dataResponseLogin: null,
+  errorResponseLogin: null,
 };
 
 export const authorizationSlice = createSlice({
@@ -16,19 +15,6 @@ export const authorizationSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    // Registration in APP
-    builder.addCase(fetchAsyncRegister.pending, (state) => {
-      state.loadingResponseRegister = 'pending';
-    });
-    builder.addCase(fetchAsyncRegister.fulfilled, (state, action) => {
-      state.dataResponseRegister = action.payload;
-      state.loadingResponseRegister = 'succeeded';
-    });
-    builder.addCase(fetchAsyncRegister.rejected, (state, action) => {
-      state.loadingResponseRegister = 'failed';
-      state.errorResponseRegister = action.error.message;
-    });
-
     //LogIn
     builder.addCase(fetchAsyncLogin.pending, (state) => {
       state.loadingResponseLogin = 'pending';
@@ -36,6 +22,8 @@ export const authorizationSlice = createSlice({
     builder.addCase(fetchAsyncLogin.fulfilled, (state, action) => {
       state.dataResponseLogin = action.payload;
       state.loadingResponseLogin = 'succeeded';
+      state.loadingResponseLogout = null;
+      state.errorResponseLogin = null;
     });
     builder.addCase(fetchAsyncLogin.rejected, (state, action) => {
       state.loadingResponseLogin = 'failed';
@@ -45,11 +33,12 @@ export const authorizationSlice = createSlice({
     // LogOut
     builder.addCase(fetchAsyncLogout.pending, (state) => {
       state.loadingResponseLogout = 'pending';
-    });
-    builder.addCase(fetchAsyncLogout.fulfilled, (state, action) => {
       state.dataResponseLogin = null;
-      state.dataResponseRegister = null;
+    });
+    builder.addCase(fetchAsyncLogout.fulfilled, (state) => {
       state.loadingResponseLogout = 'succeeded';
+      state.dataResponseLogin = null;
+      state.loadingResponseLogin = null;
     });
     builder.addCase(fetchAsyncLogout.rejected, (state, action) => {
       state.loadingResponseLogout = 'failed';
@@ -71,10 +60,11 @@ export const authorizationSlice = createSlice({
   },
 });
 
-export const selectDataResponseRegister = (state) =>
-  state.auth.dataResponseRegister;
 export const selectAccessToken = (state) =>
   state.auth.dataResponseLogin?.access_token;
+export const selectStatusLogin = (state) => state.auth.loadingResponseLogin;
+export const selectStatusLogout = (state) => state.auth.loadingResponseLogout;
+export const selectIsErrorLogin = (state) => state.auth.errorResponseLogin;
 
 export const {} = authorizationSlice.actions;
 

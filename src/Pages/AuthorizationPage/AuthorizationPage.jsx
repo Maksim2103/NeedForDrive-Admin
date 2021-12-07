@@ -1,53 +1,61 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
-import { NavLink } from 'react-router-dom';
 
 import styles from './authorizationPage.module.scss';
 
 import Logo from '../../assets/images/Logo.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  fetchAsyncLogin,
-  fetchAsyncRegister,
-} from '../../Redux/features/thunks';
-import { selectDataResponseRegister } from '../../Redux/features/authReducer/authtorizationSlice';
+import { fetchAsyncLogin } from '../../Redux/features/thunks';
 
 import classNames from 'classnames/bind';
+import {
+  selectIsErrorLogin,
+  selectStatusLogin,
+} from '../../Redux/features/authReducer/authtorizationSlice';
 
 const cx = classNames.bind(styles);
 
 const AuthorizationPage = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const isLoadingError = useSelector(selectIsErrorLogin);
+
+  const fromPage = location.state?.from?.pathname || '/admin/main';
+
   const dispatch = useDispatch();
-  const registerData = useSelector(selectDataResponseRegister);
 
-  const [email, setEmail] = useState('intern');
-  const [password, setPassword] = useState('intern-S!');
+  const [login, setLogin] = useState(null);
+  const [password, setPassword] = useState(null);
 
-  const handleChangeEmail = (event) => {
-    setEmail(event.target.value);
+  const handleChangeLogin = (event) => {
+    setLogin(event.target.value);
   };
 
   const handleChangePassword = (event) => {
     setPassword(event.target.value);
   };
 
-  const handleClickRegister = () => {
+  const handleClickLogin = () => {
     dispatch(
-      fetchAsyncRegister({
-        username: email,
+      fetchAsyncLogin({
+        username: login,
         password: password,
       }),
     );
   };
 
-  const handleClickLogin = () => {
-    dispatch(fetchAsyncLogin(registerData));
-  };
+  const statusLogin = useSelector(selectStatusLogin);
+
+  useEffect(() => {
+    if (statusLogin === 'succeeded') navigate(fromPage);
+  }, [statusLogin]);
 
   return (
     <Box>
@@ -60,16 +68,18 @@ const AuthorizationPage = () => {
         <Typography className={styles.mainTitle}>Вход</Typography>
 
         <Box className={styles.inputWrapper}>
-          <Typography className={styles.inputTitle}>Почта</Typography>
+          <Typography className={styles.inputTitle}>Логин</Typography>
           <TextField
             className={styles.inputInput}
-            type="email"
+            type="text"
             size="small"
             fullWidth
-            id="outlined-email"
-            label="Введите e-mail"
-            value={email}
-            onChange={handleChangeEmail}
+            id="outlined-login"
+            label="Введите логин"
+            error={isLoadingError}
+            required
+            value={login}
+            onChange={handleChangeLogin}
           />
         </Box>
 
@@ -82,29 +92,25 @@ const AuthorizationPage = () => {
             fullWidth
             id="outlined-password"
             label="Введите пароль"
+            error={isLoadingError}
+            helperText={isLoadingError && 'Неверный логин или пароль'}
+            required
             value={password}
             onChange={handleChangePassword}
           />
         </Box>
 
         <Box className={styles.buttonsWrapper}>
-          <Button
-            className={styles.buttonAuth}
-            variant="text"
-            onClick={handleClickRegister}
-          >
+          <Button className={styles.buttonAuth} variant="text" disabled>
             Запросить доступ
           </Button>
-          <NavLink
-            className={cx(
-              'buttonLogin',
-              !Boolean(registerData) ? 'disabledLink' : null,
-            )}
-            to="/main"
+          <Button
+            className={styles.buttonLogin}
+            variant="contained"
             onClick={handleClickLogin}
           >
             Войти
-          </NavLink>
+          </Button>
         </Box>
       </Paper>
     </Box>

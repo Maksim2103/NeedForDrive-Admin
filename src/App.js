@@ -8,13 +8,21 @@ import MainPage from './Pages/MainPage/MainPage';
 import NotFoundPage from './Pages/NotFoundPaga/NotFoundPage';
 
 import styles from './app.module.scss';
+import PrivateRoute from './hoc/PrivateRoute';
 
 function App() {
   return (
     <Box className={styles.app}>
       <Routes>
         <Route path="/" element={<AuthorizationPage />} />
-        <Route path="/main" element={<MainPage />} />
+        <Route
+          path="/admin/main"
+          element={
+            <PrivateRoute>
+              <MainPage />
+            </PrivateRoute>
+          }
+        />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Box>
