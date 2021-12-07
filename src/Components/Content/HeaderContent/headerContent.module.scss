@@ -1,0 +1,18 @@
+.appBar {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+
+  .toolBar {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    .iconsWrapper {
+      display: flex;
+      .icon {
+        margin-right: 70px;
+      }
+    }
+  }
+}

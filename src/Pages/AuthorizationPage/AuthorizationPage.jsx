@@ -18,6 +18,7 @@ import {
 import { selectDataResponseRegister } from '../../Redux/features/authReducer/authtorizationSlice';
 
 import classNames from 'classnames/bind';
+import Logotype from '../../Components/Logotype/Logotype';
 
 const cx = classNames.bind(styles);
 
@@ -51,11 +52,7 @@ const AuthorizationPage = () => {
 
   return (
     <Box>
-      <Box className={styles.logoWrapper}>
-        <img className={styles.logo} src={Logo} alt="logo" />
-        <Typography className={styles.logoTitle}>Need for drive</Typography>
-      </Box>
-
+      <Logotype />
       <Paper className={styles.formWrapper}>
         <Typography className={styles.mainTitle}>Вход</Typography>
 

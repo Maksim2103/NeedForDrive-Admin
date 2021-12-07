@@ -1,0 +1,21 @@
+.asideWrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 11fr;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  .logoWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+  }
+
+  .navBar {
+    height: 100%;
+    width: 100%;
+  }
+}
