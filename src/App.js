@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from 'react-router';
+import { HashRouter } from 'react-router-dom';
+
+import Box from '@mui/material/Box';
+
+import AuthorizationPage from './Pages/AuthorizationPage/AuthorizationPage';
+import MainPage from './Pages/MainPage/MainPage';
+import NotFoundPage from './Pages/NotFoundPaga/NotFoundPage';
+
+import styles from './app.module.scss';
+import PrivateRoute from './hoc/PrivateRoute';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box className={styles.app}>
+      <Routes>
+        <Route path="/" element={<AuthorizationPage />} />
+        <Route
+          path="/admin/main"
+          element={
+            <PrivateRoute>
+              <MainPage />
+            </PrivateRoute>
+          }
+        />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </Box>
   );
 }
 
